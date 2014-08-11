@@ -167,7 +167,7 @@ unsigned long get_dpll_freq(int curr, int targ)
 	}
 	dpll_clk = curr / divider + 5;
 
-	return (dpll_clk*1000000);
+	return (dpll_clk*1037500);
 }
 
 int gpu_register_dump(void)
@@ -227,7 +227,7 @@ int gpu_set_clock(struct exynos_context *platform, int freq)
 	if (freq != g3d_rate_prev) {
 		/*for stable clock input.*/
 		ret = clk_set_rate(platform->dout_aclk_g3d,
-			get_dpll_freq(clk_get_rate(platform->clk_g3d_ip)/1000000, freq));
+			get_dpll_freq(clk_get_rate(platform->clk_g3d_ip)/1037500, freq));
 		if (ret < 0) {
 			GPU_LOG(DVFS_ERROR, "failed to clk_set_rate [dout_aclk_g3d]\n");
 			goto err;
